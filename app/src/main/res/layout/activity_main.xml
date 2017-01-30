@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myMain"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#E1E7B8"
+    tools:context=".MainActivity">
+
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_column="0"
+            android:layout_weight="1"
+            android:text="@string/tName"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            android:typeface="monospace" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:text="@string/due_date"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            android:typeface="monospace">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:text="@string/priority"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            android:typeface="monospace">
+
+        </TextView>
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:id="@+id/task_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="ScrollViewSize">
+
+        </TableLayout>
+    </ScrollView>
+</TableLayout>

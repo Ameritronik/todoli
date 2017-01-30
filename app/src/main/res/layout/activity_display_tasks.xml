@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            app:toolbarId="@+id/toolbar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="198dp"
+                android:layout_height="?attr/actionBarSize"
+                app:title="ToDoLi">
+
+            </android.support.v7.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/InfoTv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:paddingTop="16dp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="270dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:onClick="DeleteItem"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:rippleColor="@color/colorAccent"
+        app:srcCompat="@drawable/ic_delete_forever_black_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/tbbutton1"
+        style="@style/Widget.Design.FloatingActionButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="170dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        android:onClick="SaveItem"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:rippleColor="@color/colorAccent"
+        app:srcCompat="@drawable/ic_save_black_24dp" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/Attrlist"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="510dp"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:id="@+id/taskName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:text="@string/tName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24sp"
+                android:textStyle="bold|italic"
+                android:typeface="sans"
+                tools:ignore="RelativeOverlap" />
+
+            <EditText
+                android:id="@+id/editTaskName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/taskName"
+                android:layout_alignBottom="@+id/taskName"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/editTaskNotes"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLines="1"
+                tools:ignore="LabelFor">
+
+            </EditText>
+
+
+
+            <TextView
+                android:id="@+id/taskNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/editTaskNotes"
+                android:layout_alignBottom="@+id/editTaskNotes"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/taskName"
+                android:text="@string/tNotes"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editTaskNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/sPriority"
+                android:layout_below="@+id/editTaskName"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLines="1"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:id="@+id/taskPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/sPriority"
+                android:layout_alignBottom="@+id/sPriority"
+                android:layout_alignStart="@+id/taskNotes"
+                android:layout_below="@+id/taskNotes"
+                android:text="@string/tPriority"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editTaskPriority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/editTaskStatus"
+                android:layout_below="@+id/editTaskNotes"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLines="1"
+                android:visibility="invisible"
+                tools:ignore="LabelFor" />
+
+            <Spinner
+                android:id="@+id/sPriority"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignStart="@+id/editTaskStatus"
+                android:layout_below="@+id/editTaskNotes"
+                android:layout_toEndOf="@+id/taskDue"
+                android:entries="@array/priority_indicator_values"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/taskStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/editTaskStatus"
+                android:layout_alignBottom="@+id/editTaskStatus"
+                android:layout_alignStart="@+id/taskPriority"
+                android:layout_below="@+id/taskPriority"
+                android:text="@string/tStatus"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/editTaskStatus"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/tvTaskDue"
+                android:layout_below="@+id/sPriority"
+                android:ems="10"
+                android:inputType="text"
+                android:maxLines="1"
+                tools:ignore="LabelFor"
+                android:visibility="invisible" />
+
+            <Spinner
+                android:id="@+id/sTstatus"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_alignStart="@+id/editTaskStatus"
+                android:layout_below="@+id/sPriority"
+                android:layout_toEndOf="@+id/taskStatus"
+                android:entries="@array/status_indicator_values"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/taskDue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/taskStatus"
+                android:layout_below="@+id/taskStatus"
+                android:layout_marginTop="10dp"
+                android:text="@string/tDue"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/tvTaskDue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/editTaskStatus"
+                android:layout_marginTop="10dp"
+                android:gravity="bottom|left"
+                android:hint="@string/hint_date"
+                android:textSize="18sp"
+                tools:ignore="RtlHardcoded">
+
+            </TextView>
+
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_alignTop="@+id/taskDue"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="48dp"
+                android:calendarViewShown="false"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:datePickerMode="spinner"
+                android:minHeight="150dp"
+                android:minWidth="150dp"
+                android:nestedScrollingEnabled="false" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
+
+

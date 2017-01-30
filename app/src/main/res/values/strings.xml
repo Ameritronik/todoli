@@ -1,0 +1,38 @@
+<resources>
+    <string-array name="priority_indicator_values">
+        <item>@string/pHigh</item>
+        <item>@string/pMedium</item>
+        <item>@string/pLow</item>
+    </string-array>
+    <string-array name="status_indicator_values">
+        <item>@string/pTBD</item>
+        <item>@string/pDone</item>
+    </string-array>
+    <string name="pHigh">High</string>
+    <string name="pMedium">Med</string>
+    <string name="pLow">Low</string>
+    <string name="pTBD">TBD</string>
+    <string name="pDone">Done</string>
+    <string name="app_name">ToDoLi</string>
+    <string name="Add_New">Add New</string>
+    <string name="edit">Edit Task</string>
+    <string name="delete">Delete Task</string>
+    <string name="title_activity_display_task">DisplayTask</string>
+    <string name="tName">Task Name</string>
+    <string name="tDue">Due</string>
+    <string name="tNotes">Notes</string>
+    <string name="tPriority">Priority</string>
+    <string name="tStatus">Status</string>
+    <string name="save">Save Task</string>
+    <string name="deleteTask">Confirm task delete:</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="data_base">Data Base</string>
+    <string name="save_or_delete">Save or delete</string>
+    <string name="savebtn">Save</string>
+    <string name="delbtn">Del</string>
+    <string name="hint_date">Select below</string>
+    <string name="priority">Priority</string>
+    <string name="due_date">Due Date</string>
+    <string name="task">Task</string>
+</resources>
