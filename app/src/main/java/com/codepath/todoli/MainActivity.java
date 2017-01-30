@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -38,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
         final TableLayout taskTableView = (TableLayout)findViewById(R.id.task_table);
         taskTableView.setClickable(true);
         //Log.i(TAG,"in MainActivity");
+        int[] screenSize= getScreenSIze();
+        int ScreenWidth=screenSize[0];
+        int ScreenHeight=screenSize[1];
+        final int tNmWidth = ScreenWidth/3;
+        final int tDuWidth = ScreenWidth/3;
+        final int tPrWidth = ScreenWidth/3;
+        int rowHeight;
         mydb = new DBHelper(this);
         ArrayList TaskList = mydb.getAllTasks();
         ArrayList PrioritiesList = mydb.getAlltPriorities();
@@ -45,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         ArrayList StatusList = mydb.getAlltStatus();
         boolean TaskDone = false;
         TableRowIndex=mydb.getTotalRows();
+        if(TableRowIndex >0) {
+            rowHeight = ScreenHeight/TableRowIndex;}
+        else {
+            rowHeight = 64;
+        }
+        if (rowHeight > 64) rowHeight = 64;
         // For all populated rows of the data base
         // get the values and populate the table
         for(int row = 0;row<TableRowIndex;row++){
@@ -62,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ttCol[0].setBackgroundColor(Color.rgb(225, 231, 184));
                 ttCol[0].setGravity(Gravity.CENTER_HORIZONTAL);
-                ttCol[0].setWidth(160);
-                ttCol[0].setHeight(64);
+                ttCol[0].setWidth(tNmWidth);
+                ttCol[0].setHeight(rowHeight);
                 ttCol[0].setTextSize(16);
                 ttRow[row].addView(ttCol[0]);
 
@@ -78,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 ttCol[1].setBackgroundColor(Color.rgb(219, 190, 223));
                 ttCol[1].setGravity(Gravity.CENTER_HORIZONTAL);
-                ttCol[1].setWidth(160);
-                ttCol[1].setHeight(64);
+                ttCol[1].setWidth(tDuWidth);
+                ttCol[1].setHeight(rowHeight);
                 ttCol[1].setTextSize(16);
                 ttRow[row].addView(ttCol[1]);
 
@@ -100,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
                     ttCol[2].setBackgroundColor(Color.rgb(161, 202, 254));
                 }
                 ttCol[2].setGravity(Gravity.CENTER_HORIZONTAL);
-                ttCol[2].setWidth(160);
-                ttCol[2].setHeight(64);
+                ttCol[2].setWidth(tPrWidth);
+                ttCol[2].setHeight(rowHeight);
                 ttCol[2].setTextSize(16);
 
                 ttRow[row].addView(ttCol[2]);
@@ -124,6 +138,16 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+    private int[] getScreenSIze(){
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int h = displaymetrics.heightPixels;
+        int w = displaymetrics.widthPixels;
+
+        int[] size={w,h};
+        return size;
+
     }
     // Create the action bar menu button for adding task
     @Override
