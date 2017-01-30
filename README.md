@@ -4,7 +4,7 @@
 
 Submitted by: *H. Kanekal*
 
-Time spent: *12* hours spent in total
+Time spent:
 
 ## User Stories
 
@@ -37,7 +37,9 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough source: imgur.com" /></a>
+.
+
+<a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough" /></a>
 
 <a href="http://imgur.com/ICtybTz"><img src="http://i.imgur.com/ICtybTz.gif" title="ToDoLi Dynamic Column sizing" /></a>
 
