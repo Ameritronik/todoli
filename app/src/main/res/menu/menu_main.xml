@@ -6,8 +6,26 @@
     tools:context="com.codepath.todoli.MainActivity">
     <item
         android:id="@+id/AddItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:icon="@drawable/ic_add_circle_outline_black_24dp"
         android:orderInCategory="1"
+        android:title=""
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/AlphaInc"
+        android:icon="@drawable/ic_fontsizeinc"
+        android:orderInCategory="2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visible="true"
+        app:showAsAction="ifRoom"
+        android:title="" />
+    <item
+        android:id="@+id/AlphaDec"
+        android:icon="@drawable/ic_fontsizedec"
+        android:orderInCategory="3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visible="true"

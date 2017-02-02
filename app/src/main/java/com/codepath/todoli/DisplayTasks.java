@@ -31,6 +31,7 @@ public class DisplayTasks extends Activity {
     private int mMonth;
     private int mDay;
     private int cYear;
+    private String textSizeCurrent;
     DatePicker tDuePicker;
     private String Hi;
     private String Med;
@@ -63,6 +64,7 @@ public class DisplayTasks extends Activity {
         if(extras !=null) {
             int Value = extras.getInt("id");
             Task_To_Update = extras.getString("item");
+            textSizeCurrent = extras.getString("tsz");
             if(Value>0){ // Task has populated information, get it for display
                 Cursor rs = mydb.getTask(Task_To_Update);
                 rs.moveToFirst();
@@ -110,9 +112,12 @@ public class DisplayTasks extends Activity {
                 }
             } else if (Value == 0) {
                 // Entering task details for first time
-                tDue.setText(setCurrentDateOnView("1/1/2017","TBD"));
                 Calendar calendar = Calendar.getInstance();
                 cYear = calendar.get(Calendar.YEAR);
+                int cMonth = calendar.get(Calendar.MONTH);
+                int cDay = calendar.get(Calendar.DAY_OF_MONTH);
+                String cSet = (cMonth+1)+"/"+cDay+"/"+cYear;
+                tDue.setText(setCurrentDateOnView(cSet,"TBD"));
                 tDuePicker = (DatePicker) findViewById(R.id.datePicker);
                 MyOnDateChangeListener onDateChangeListener = new MyOnDateChangeListener();
                 tDuePicker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -293,9 +298,8 @@ public class DisplayTasks extends Activity {
             if(Value>0){
                 if(mydb.updateTasks(Task_To_Update,tName.getText().toString(),
                          tNotes.getText().toString(),tPriority.getText().toString(),
-                         tStatus.getText().toString(),tDue.getText().toString())){
+                         tStatus.getText().toString(),tDue.getText().toString(),textSizeCurrent)){
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
-
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 } else{
@@ -304,7 +308,7 @@ public class DisplayTasks extends Activity {
             } else{
                 if(mydb.insertTask(tName.getText().toString(), tNotes.getText().toString(),
                         tPriority.getText().toString(), tStatus.getText().toString(),
-                        tDue.getText().toString())){
+                        tDue.getText().toString(),textSizeCurrent)){
                     Toast.makeText(getApplicationContext(), "done",
                             Toast.LENGTH_SHORT).show();
                 } else{

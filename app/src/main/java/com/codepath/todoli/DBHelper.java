@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -22,7 +24,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TASKLIST_COLUMN_TPRIORITY = "taskPriority";
     public static final String TASKLIST_COLUMN_TSTATUS = "taskStatus";
     public static final String TASKLIST_COLUMN_TDUE = "taskDueDate";
-    //String TAG = "ToDoLi: "; // need TAG for debugging
+    public static final String TASKLIST_COLUMN_TTXTSIZE = "taskTextSize";
+
+    String TAG = "ToDoLi: "; // need TAG for debugging
     // Constructor for context
     public DBHelper(Context context) {
         super(context, DATABASE_NAME , null, 1);
@@ -37,7 +41,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         TASKLIST_COLUMN_TNOTES+" text,"+
                         TASKLIST_COLUMN_TPRIORITY+" text,"+
                         TASKLIST_COLUMN_TSTATUS+" text,"+
-                        TASKLIST_COLUMN_TDUE+ " text"+")";
+                        TASKLIST_COLUMN_TDUE+" text,"+
+                        TASKLIST_COLUMN_TTXTSIZE+" text"+")";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -51,14 +56,16 @@ public class DBHelper extends SQLiteOpenHelper {
      * Begin methods for accessing data base from other activities
      * Names of methods are self explanatory below
      */
-    public boolean insertTask(String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate) {
+    public boolean insertTask(String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate, String taskTextSize) {
         SQLiteDatabase db = this.getWritableDatabase();
+        Log.i(TAG,"DBH: insert: ts "+taskTextSize);
         ContentValues contentValues = new ContentValues();
         contentValues.put(TASKLIST_COLUMN_TNAME, taskName);
         contentValues.put(TASKLIST_COLUMN_TNOTES, taskNotes);
         contentValues.put(TASKLIST_COLUMN_TPRIORITY, taskPriority);
         contentValues.put(TASKLIST_COLUMN_TSTATUS, taskStatus);
         contentValues.put(TASKLIST_COLUMN_TDUE, taskDueDate);
+        contentValues.put(TASKLIST_COLUMN_TTXTSIZE, taskTextSize);
         db.insert(TASKLIST_TABLE_NAME, null, contentValues);
         return true;
     }
@@ -68,7 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.query(TASKLIST_TABLE_NAME,
                 new String[] {TASKLIST_COLUMN_ID, TASKLIST_COLUMN_TNAME,
                         TASKLIST_COLUMN_TNOTES, TASKLIST_COLUMN_TPRIORITY,
-                        TASKLIST_COLUMN_TSTATUS, TASKLIST_COLUMN_TDUE},
+                        TASKLIST_COLUMN_TSTATUS, TASKLIST_COLUMN_TDUE,TASKLIST_COLUMN_TTXTSIZE},
                 TASKLIST_COLUMN_TNAME + " = '" + task + "'", null,null,null,null);
     }
 
@@ -79,14 +86,16 @@ public class DBHelper extends SQLiteOpenHelper {
         return totRows;
     }
 
-    public boolean updateTasks(String task, String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate) {
+    public boolean updateTasks(String task, String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate, String taskTextSize) {
         SQLiteDatabase db = this.getWritableDatabase();
+        Log.i(TAG,"DBH: update: ts "+taskTextSize);
         ContentValues contentValues = new ContentValues();
         contentValues.put(TASKLIST_COLUMN_TNAME, taskName);
         contentValues.put(TASKLIST_COLUMN_TNOTES, taskNotes);
         contentValues.put(TASKLIST_COLUMN_TPRIORITY, taskPriority);
         contentValues.put(TASKLIST_COLUMN_TSTATUS, taskStatus);
         contentValues.put(TASKLIST_COLUMN_TDUE, taskDueDate);
+        contentValues.put(TASKLIST_COLUMN_TTXTSIZE,taskTextSize);
         db.update(TASKLIST_TABLE_NAME, contentValues, TASKLIST_COLUMN_TNAME + " = ?", new String[]{task});
         return true;
     }
@@ -157,6 +166,19 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
 
+    public ArrayList<String> getAlltTxtSize() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from taskTable", null );
+
+        res.moveToFirst();
+        while (res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(TASKLIST_COLUMN_TTXTSIZE)));
+            res.moveToNext();
+        }
+        return array_list;
     }
 }
