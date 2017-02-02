@@ -4,7 +4,7 @@
 
 Submitted by: *H. Kanekal*
 
-Time spent: *12* hours spent in total
+Time spent:
 
 ## User Stories
 
@@ -26,23 +26,31 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [x] List anything else that you can get done to improve the app functionality!
-	1. Check that the date for the due-date is not in the past
+	1. Check that the date for the due-date is not in the past, and toast a message if a past date is selected for due date
 	2. Ask user for comfirmation of deletion of a task
 	3. Use a spinner for date selection, and set the spinner to todays date
-	4. 
+	4. If user marks task as done, a strike through shows on the task in main display, user still needs to delete task if necessary
+	5. Background color of column of priority changes based on {High,Medium,Low} => { Red, Green, Blue }
+	6. Deliberately moved away from Fragments as the data passing mechanism between fragments is un-necessary overhead
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough source: imgur.com" /></a>
+.
+
+<a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough" /></a>
+
+<a href="http://imgur.com/ICtybTz"><img src="http://i.imgur.com/ICtybTz.gif" title="ToDoLi Dynamic Column sizing" /></a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-
+	Debugging takes time. 
+	Views set up in layout XML files need to be handcrafted for complex layouts, but using the design tab is OK for a quick and simple layouts.
+	Using the correct algorithms is important before adding spinner-listeners or on-click listeners etc.
 ## License
 
     Copyright [2017] [H. Kanekal]
