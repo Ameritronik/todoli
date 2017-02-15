@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -121,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
             } else if (dbPriority.equals("Low")) {
                 ttCol[2].setBackgroundColor(Color.rgb(161, 202, 254));
             }
+            if (TaskDone) {
+                ttCol[1].setBackgroundColor(Color.rgb(225, 231, 184));
+                ttCol[2].setBackgroundColor(Color.rgb(225, 231, 184));
+            }
             ttCol[2].setGravity(Gravity.CENTER_HORIZONTAL);
             ttCol[2].setWidth(tPrWidth);
             ttCol[0].setHeight(rowHeight);
@@ -129,14 +132,12 @@ public class MainActivity extends AppCompatActivity {
             String txtSze = TaskTextSize.get(row).toString(); // get last updated from db
             textSize = Integer.parseInt(txtSze);
             if(textSize<14) { textSize = 14; }
-            Log.i(TAG,"Back: ts "+textSize);
             ttCol[0].setTextSize(textSize);
             ttCol[1].setTextSize(textSize);
             ttCol[2].setTextSize(textSize);
             if(fontsizechanged) {
                 textSize = Integer.parseInt(stateoftxtsize);
                 if(textSize<14) { textSize = 14; }
-                Log.i(TAG,"Fontchanged: ts "+textSize);
                 ttCol[0].setTextSize(textSize);
                 ttCol[1].setTextSize(textSize);
                 ttCol[2].setTextSize(textSize);
@@ -196,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                 Bundle dataBundle = new Bundle();
                 dataBundle.putInt("id", 0);
                 dataBundle.putString("tsz",stateoftxtsize);
-                Log.i(TAG,"Put tsz to  "+stateoftxtsize);
                 backfromdisptask = true; // set so that text size can be maintained
                 Intent intent = new Intent(getApplicationContext(),DisplayTasks.class);
                 intent.putExtras(dataBundle);

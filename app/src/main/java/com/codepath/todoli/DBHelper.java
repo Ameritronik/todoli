@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,6 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     public boolean insertTask(String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate, String taskTextSize) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.i(TAG,"DBH: insert: ts "+taskTextSize);
         ContentValues contentValues = new ContentValues();
         contentValues.put(TASKLIST_COLUMN_TNAME, taskName);
         contentValues.put(TASKLIST_COLUMN_TNOTES, taskNotes);
@@ -72,11 +70,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getTask(String task) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.query(TASKLIST_TABLE_NAME,
+        String mQuery;
+        /* mQuery = TASKLIST_COLUMN_ID + TASKLIST_COLUMN_TNAME + TASKLIST_COLUMN_TNOTES +
+                 TASKLIST_COLUMN_TPRIORITY + TASKLIST_COLUMN_TSTATUS +
+                 TASKLIST_COLUMN_TDUE + TASKLIST_COLUMN_TTXTSIZE +
+                 TASKLIST_COLUMN_TNAME + " = '" + task + "'";
+        */
+        mQuery = "select * from "+TASKLIST_TABLE_NAME+" where "+TASKLIST_COLUMN_TNAME+ " = '" + task.replaceAll("'", "''") + "'";
+
+        return db.rawQuery( mQuery, null);
+
+        /*return db.query(TASKLIST_TABLE_NAME,
                 new String[] {TASKLIST_COLUMN_ID, TASKLIST_COLUMN_TNAME,
                         TASKLIST_COLUMN_TNOTES, TASKLIST_COLUMN_TPRIORITY,
                         TASKLIST_COLUMN_TSTATUS, TASKLIST_COLUMN_TDUE,TASKLIST_COLUMN_TTXTSIZE},
                 TASKLIST_COLUMN_TNAME + " = '" + task + "'", null,null,null,null);
+        */
     }
 
 
@@ -85,10 +94,8 @@ public class DBHelper extends SQLiteOpenHelper {
         int totRows = (int) DatabaseUtils.queryNumEntries(db, TASKLIST_TABLE_NAME);
         return totRows;
     }
-
     public boolean updateTasks(String task, String taskName, String taskNotes, String taskPriority, String taskStatus, String taskDueDate, String taskTextSize) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Log.i(TAG,"DBH: update: ts "+taskTextSize);
         ContentValues contentValues = new ContentValues();
         contentValues.put(TASKLIST_COLUMN_TNAME, taskName);
         contentValues.put(TASKLIST_COLUMN_TNOTES, taskNotes);
@@ -106,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public Integer deleteTask(String task) {
         SQLiteDatabase db = this.getWritableDatabase();
         int dtr = 0;
-        dtr = db.delete(TASKLIST_TABLE_NAME, TASKLIST_COLUMN_TNAME + " = '" + task + "'", null);
+        dtr = db.delete(TASKLIST_TABLE_NAME, TASKLIST_COLUMN_TNAME + " = '" + task.replaceAll("'", "''") + "'", null);
         db.execSQL("VACUUM"); // keep db compact
         return dtr;
     }
