@@ -38,10 +38,13 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 .
+<a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough" /></a>
 
 <a href="http://imgur.com/nF39cwJ"><img src="http://i.imgur.com/nF39cwJ.gif" title="ToDoLi Walkthrough" /></a>
 
 <a href="http://imgur.com/ICtybTz"><img src="http://i.imgur.com/ICtybTz.gif" title="ToDoLi Dynamic Column sizing" /></a>
+
+<a href="http://imgur.com/5TZx9HL"><img src="http://i.imgur.com/5TZx9HL.gif" title="ToDoLi Font re-sizing" /></a>
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
